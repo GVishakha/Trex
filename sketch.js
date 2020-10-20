@@ -105,9 +105,13 @@ function draw() {
       gameState = END;
         
     }
+    if( score===10000 ){
+      gameState = END;
+    }
+
   }
   else if (gameState === END) {
-    gameOver.visible = true;
+    text("Well Played Champ!",width/2-300,100);
     restart.visible = true;
     
     //set velcity of each game object to 0
@@ -117,7 +121,10 @@ function draw() {
     cloudsGroup.setVelocityXEach(0);
     
     //change the trex animation
-    trex.changeAnimation("collided",trex_collided);
+    if(score!==10000){
+      trex.changeAnimation("collided",trex_collided);
+      gameOver.visible = true;
+    }
     
     //set lifetime of the game objects so that they are never destroyed
     obstaclesGroup.setLifetimeEach(-1);
